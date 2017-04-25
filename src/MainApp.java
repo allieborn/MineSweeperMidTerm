@@ -12,9 +12,10 @@ public class MainApp {
 
         System.out.println("Welcome to Mine-Sweeper");
 
-        System.out.println("Enter the size of your grid to play on: ");
-        gridSize = scan.nextInt();
-        scan.nextLine();
+        gridSize = Validator.getInt(scan,
+                "Enter the size of your grid to play on (2 through 10): ",
+                2,
+                10);
 
         HiddenGrid hiddenGrid = new HiddenGrid(gridSize);
         MirrorGrid mirrorGrid = new MirrorGrid(gridSize);
@@ -31,6 +32,4 @@ public class MainApp {
 
 
     }
-
-
 }

@@ -27,10 +27,10 @@ class MirrorGrid {
      * Sets the vakue of a specific cell
      * @param x the row to set
      * @param y the column to set
-     * @param hiddenCellValue the value the cell will be initialized with
+     * @param newCellValue the value the cell will be initialized with
      */
-    public void setMirrorCell (int x, int y, int hiddenCellValue) {
-        mirrorGrid[x][y] = hiddenCellValue;
+    public void setMirrorCell (int x, int y, char newCellValue) {
+        mirrorGrid[x][y] = newCellValue;
     }
 
     /**

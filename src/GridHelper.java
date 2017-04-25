@@ -13,4 +13,9 @@ public class GridHelper {
     // allow someone to "flag" or "guess" a box
     // initialize HiddenGrid
 
+    // Sets the value of a specific cell in a mirrorGrid from the twin cell in hiddenGrid
+    public static void copyHiddenCellToMirror(int x, int y, HiddenGrid hiddenGrid, MirrorGrid mirrorGrid) {
+        mirrorGrid.setMirrorCell(x, y, hiddenGrid.getHiddenCell(x, y));
+    }
+
 }

@@ -1,6 +1,4 @@
-import java.util.Scanner;
-
-public class MirrorGrid {
+class MirrorGrid {
 
     private int [][] mirrorGrid;
 
@@ -13,9 +11,8 @@ public class MirrorGrid {
         return mirrorGrid[x][y];
     }
 
-    // Sets the value of a specific cell from the mirrored cell in HiddenGrid
-    public void copyHiddenCellToMirror(int x, int y) {
-        // FIXME: copy value from hiddenGrid[x][y] to mirrorGrid [x][y]
+    public void setMirrorCell (int x, int y, int hiddenCellValue) {
+        mirrorGrid[x][y] = hiddenCellValue;
     }
 
     public void printGridToConsole() {
@@ -39,15 +36,11 @@ public class MirrorGrid {
         }
     }
 
-    //
-
-    //
-
     // THINGS THIS CLASS WILL DO
     // [finished] Hold an array object called hiddenGrid
     // [finished] "Get" a specific x by y box
-    //    [unfinished] validate that input is within range of the index
+    //    [unfinished] FIXME: validate that input is within range of the index
     // [unfinished] "Get" or print the entire grid
-    // [In Prograss] "Set" a specific x yb y box
+    // [finished] "Set" a specific x yb y box
 
 }

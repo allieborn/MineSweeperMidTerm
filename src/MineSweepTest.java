@@ -18,7 +18,7 @@ public class MineSweepTest {
         testMirrorGrid = new MirrorGrid(10);
     }
 
-    public static void allieTestsHere () {
+    public static void testForUserFlag () {
 
         HiddenGrid testHiddenGrid;
         MirrorGrid testMirrorGrid;

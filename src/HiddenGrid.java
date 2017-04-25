@@ -16,6 +16,5 @@ public class HiddenGrid {
     // "Get" a specific x by y box
     // "Set" or initialize it's entire self (done with GridHelper)
 
-
 }
 

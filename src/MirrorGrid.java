@@ -2,14 +2,14 @@
  * Grid object that gets displayed to the console
  */
 class MirrorGrid {
-    private int [][] mirrorGrid;
+    private String [][] mirrorGrid;
 
     /**
      * Constructor initializes Mirror Array to height and width chosen by user
      * @param userGridRequest user entered rows and columns (will always be a square)
      */
     MirrorGrid(int userGridRequest) {
-        mirrorGrid = new int[userGridRequest][userGridRequest];
+        mirrorGrid = new String[userGridRequest][userGridRequest];
     }
 
     /**
@@ -19,7 +19,7 @@ class MirrorGrid {
      * @return [x][y] cell's value
      */
     // Returns the value of a specific cell
-    public int getMirrorCell (int x, int y) {
+    public String getMirrorCell (int x, int y) {
         return mirrorGrid[x][y];
     }
 
@@ -29,13 +29,26 @@ class MirrorGrid {
      * @param y the column to set
      * @param newCellValue the value the cell will be initialized with
      */
-    public void setMirrorCell (int x, int y, char newCellValue) {
+    public void setMirrorCell (int x, int y, String newCellValue) {
         mirrorGrid[x][y] = newCellValue;
+    }
+
+    /**
+     * initializes the mirrorGrid object to default value passed
+     * @param defaultValue string value to add to each cell
+     */
+    public void initializeMirrorGrid(String defaultValue) {
+        for (int i = 0; i < mirrorGrid.length; i++) {
+            for (int j = 0; j < mirrorGrid.length; j++) {
+                setMirrorCell(i, j, defaultValue);
+            }
+        }
     }
 
     /**
      * Prints entire Mirror Grid to the console
      */
+    // FIXME: move to gridhelper eventually
     public void printGridToConsole() {
         // PRINTS TOP ROW OF COLUMN LABELS
         System.out.print("\t|");

@@ -12,11 +12,24 @@ public class GridHelper {
     // copy hiddenGrid value to MirrorGrid twin if user guesses that box
     // allow someone to "flag" or "guess" a box
     // initialize HiddenGrid
-    // FIXME: add x and y labels
 
-    // Sets the value of a specific cell in a mirrorGrid from the twin cell in hiddenGrid
+    /**
+     * Copies specific cell in Hidden Grid to Mirror Grid
+     * @param x row value
+     * @param y column value
+     * @param hiddenGrid your HiddenGrid object
+     * @param mirrorGrid your MirrorGrid object
+     */
     public static void copyHiddenCellToMirror(int x, int y, HiddenGrid hiddenGrid, MirrorGrid mirrorGrid) {
-        mirrorGrid.setMirrorCell(x, y, hiddenGrid.getHiddenCell(x, y));
+        mirrorGrid.setMirrorCell(x, y, Integer.toString(hiddenGrid.getHiddenCell(x, y)));
+    }
+
+    public static int getMaxBombs (int cellCount) {
+        int maxBombs = cellCount / 10;
+        if (cellCount % 10 > 0) {
+            maxBombs += 1;
+        }
+        return maxBombs;
     }
 
 }

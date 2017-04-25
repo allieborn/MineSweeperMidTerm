@@ -20,6 +20,11 @@ public class MainApp {
         HiddenGrid hiddenGrid = new HiddenGrid(gridSize);
         MirrorGrid mirrorGrid = new MirrorGrid(gridSize);
 
+        // FIXME: delete this before you push
+        mirrorGrid.initializeMirrorGrid("?");
+        //FIXME: delete this before you push
+        //hiddenGrid.setHiddenGrid();
+
         mirrorGrid.printGridToConsole();
 
         System.out.println("Enter a letter row now: ");
@@ -27,8 +32,6 @@ public class MainApp {
 
         System.out.println("Enter a number column: ");
         userNumber = scan.nextInt();
-
-
 
     }
 }

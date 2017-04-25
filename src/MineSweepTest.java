@@ -16,4 +16,6 @@ public class MineSweepTest {
         testMirrorGrid = new MirrorGrid(10);
     }
 
+
+
 }

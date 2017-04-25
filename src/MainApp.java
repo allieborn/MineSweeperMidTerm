@@ -12,21 +12,29 @@ public class MainApp {
 
         System.out.println("Welcome to Mine-Sweeper");
 
-        gridSize = Validator.getInt(scan,
-                "Enter the size of your grid to play on (2 through 10): ",
-                2,
-                10);
+//        gridSize = Validator.getInt(scan,
+//                "Enter the size of your grid to play on (2 through 10): ",
+//                2,
+//                10);
+//
+//        HiddenGrid hiddenGrid = new HiddenGrid(gridSize);
+//        MirrorGrid mirrorGrid = new MirrorGrid(gridSize);
+//
+//        mirrorGrid.printGridToConsole();
+//
+//        System.out.println("Enter a letter row now: ");
+//        userLetter = scan.nextLine();
+//
+//        System.out.println("Enter a number column: ");
+//        userNumber = scan.nextInt();
 
-        HiddenGrid hiddenGrid = new HiddenGrid(gridSize);
-        MirrorGrid mirrorGrid = new MirrorGrid(gridSize);
 
-        mirrorGrid.printGridToConsole();
+        //ALLIE'S TEST:
 
-        System.out.println("Enter a letter row now: ");
-        userLetter = scan.nextLine();
+        MineSweepTest myTest = new MineSweepTest();
+        MineSweepTest.testForUserFlag();
 
-        System.out.println("Enter a number column: ");
-        userNumber = scan.nextInt();
+
 
 
 

@@ -2,14 +2,14 @@
  * Grid object that gets displayed to the console
  */
 class MirrorGrid {
-    private int [][] mirrorGrid;
+    private String [][] mirrorGrid;
 
     /**
      * Constructor initializes Mirror Array to height and width chosen by user
      * @param userGridRequest user entered rows and columns (will always be a square)
      */
     MirrorGrid(int userGridRequest) {
-        mirrorGrid = new int[userGridRequest][userGridRequest];
+        mirrorGrid = new String[userGridRequest][userGridRequest];
     }
 
     /**
@@ -19,7 +19,7 @@ class MirrorGrid {
      * @return [x][y] cell's value
      */
     // Returns the value of a specific cell
-    public int getMirrorCell (int x, int y) {
+    public String getMirrorCell (int x, int y) {
         return mirrorGrid[x][y];
     }
 
@@ -27,10 +27,10 @@ class MirrorGrid {
      * Sets the vakue of a specific cell
      * @param x the row to set
      * @param y the column to set
-     * @param hiddenCellValue the value the cell will be initialized with
+     * @param newCellValue the value the cell will be initialized with
      */
-    public void setMirrorCell (int x, int y, int hiddenCellValue) {
-        mirrorGrid[x][y] = hiddenCellValue;
+    public void setMirrorCell (int x, int y, String newCellValue) {
+        mirrorGrid[x][y] = newCellValue;
     }
 
     /**
@@ -64,3 +64,4 @@ class MirrorGrid {
         }
     }
 }
+

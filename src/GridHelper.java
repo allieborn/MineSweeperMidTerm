@@ -16,7 +16,7 @@ public class GridHelper {
 
     // Sets the value of a specific cell in a mirrorGrid from the twin cell in hiddenGrid
     public static void copyHiddenCellToMirror(int x, int y, HiddenGrid hiddenGrid, MirrorGrid mirrorGrid) {
-        mirrorGrid.setMirrorCell(x, y, hiddenGrid.getHiddenCell(x, y));
+        mirrorGrid.setMirrorCell(x, y, Integer.toString(hiddenGrid.getHiddenCell(x, y)));
     }
 
 }

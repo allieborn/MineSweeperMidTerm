@@ -12,6 +12,7 @@ public class GridHelper {
     // copy hiddenGrid value to MirrorGrid twin if user guesses that box
     // allow someone to "flag" or "guess" a box
     // initialize HiddenGrid
+    // FIXME: add x and y labels
 
     // Sets the value of a specific cell in a mirrorGrid from the twin cell in hiddenGrid
     public static void copyHiddenCellToMirror(int x, int y, HiddenGrid hiddenGrid, MirrorGrid mirrorGrid) {

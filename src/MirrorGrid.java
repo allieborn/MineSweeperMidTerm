@@ -29,6 +29,7 @@ class MirrorGrid {
      * @param y the column to set
      * @param newCellValue the value the cell will be initialized with
      */
+
     public void setMirrorCell (int x, int y, String newCellValue) {
         mirrorGrid[x][y] = newCellValue;
     }

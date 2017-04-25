@@ -1,0 +1,18 @@
+Hello, Welcome to Minesweeper!
+
+Please choose your difficulty level: (ex: easy/medium/hard)
+Input: // 6
+
+*print array*
+Please enter your guess or 'q' to exit: (ex. A 2 flag/dig)
+Input: // B 3 dig
+
+*print array*
+Please enter your guess or 'q' to exit: (ex A 2 flag/dig)
+Input: // D 6 flag
+
+*print array*
+Please enter your guess or 'q' to exit: (ex. A 2 flag/dig)
+Input: // q
+
+Goodbye!

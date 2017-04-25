@@ -25,7 +25,7 @@ public class MainApp {
         userLetter = scan.nextLine();
 
         System.out.println("Enter a number column: ");
-        userNumber = scan.nextInt(); 
+        userNumber = scan.nextInt();
 
 
 

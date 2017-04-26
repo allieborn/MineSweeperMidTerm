@@ -44,6 +44,25 @@ public class MineSweepTest {
 
     }
 
+    public static void testForEndofGame() {
+
+        HiddenGrid testHiddenGrid;
+        testHiddenGrid = new HiddenGrid(10);
+//initialized these just to avoid error message
+//this is just a mock up - will be better once we see main
+        int userXaxis = 0;
+        int userYaxis = 0;
+
+        testHiddenGrid.getHiddenCell(userXaxis, userYaxis);
+        if (testHiddenGrid.getHiddenCell(userXaxis, userYaxis) == -1){
+            System.out.println("Oh no! That was a bomb. Game over.");
+            testHiddenGrid.printGridToConsole();
+        }
+
+
+
+    }
+
 
 
 

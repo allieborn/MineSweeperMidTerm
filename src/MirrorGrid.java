@@ -1,5 +1,10 @@
 /**
- * Grid object that gets displayed to the console
+ * Initialization of a mirror grid object that
+ * displays hidden cells, found cells, and flagged cells
+ *
+ * @author Sarah Guarino
+ * @author Allie Born
+ * @version 1.0
  */
 class MirrorGrid {
     private String [][] mirrorGrid;
@@ -13,46 +18,27 @@ class MirrorGrid {
     }
 
     /**
-     * initializes the mirrorGrid object to default value passed
+     * initializes the mirrorGrid object with a
+     * 'clean slate' of the default value passed
      * @param defaultValue string value to add to each cell
      */
     public void initializeGrid(String defaultValue) {
-        for (int i = 0; i < mirrorGrid.length; i++) {
-            for (int j = 0; j < mirrorGrid.length; j++) {
-                setCell(i, j, defaultValue);
+        for (int i = 0; i < mirrorGrid.length; i++) {         // 1: Loops through every 'row'
+            for (int j = 0; j < mirrorGrid.length; j++) {     // 2: Loops through every 'column' in each row
+                setCell(i, j, defaultValue);                  // 3: sets the specific cell at i by j to the defaultValue given
             }
         }
     }
 
     /**
-     * Prints entire Mirror Grid to the console
+     * Returns the value of a specific cell
+     * @param x the row the value can be found in
+     * @param y the column the value can be found in
+     * @return [x][y] cell's value
      */
-    public void printGrid() {
-        // PRINTS TOP ROW OF COLUMN LABELS
-        System.out.print("\t|");
-        for (int s = 0; s < mirrorGrid.length; s++) {
-            System.out.print("y" + s + "\t|");
-        }
-        System.out.println();
-
-        // creates first border
-        for (int s = 0; s <= mirrorGrid.length; s++) {
-            System.out.print(" __\t");
-        }
-        System.out.println();
-
-        // Iterates through every row x
-        for (int i = 0; i < mirrorGrid.length; i++) {
-            System.out.print("x" + i + "\t|");
-            for (int j = 0; j < mirrorGrid[i].length; j++) {
-                System.out.print(mirrorGrid[i][j] + "\t|");
-            }
-            System.out.println();
-            for (int s = 0; s <= mirrorGrid.length; s++) {
-                System.out.print(" __\t");
-            }
-            System.out.println();
-        }
+    // Returns the value of a specific cell
+    String getCell (int x, int y) {
+        return mirrorGrid[x][y];
     }
 
     /**
@@ -66,14 +52,11 @@ class MirrorGrid {
     }
 
     /**
-     * Returns the value of a specific cell
-     * @param x the row the value can be found in
-     * @param y the column the value can be found in
-     * @return [x][y] cell's value
+     * Passes our hiddenGrid object to be printed
+     * cell by cell to the console
      */
-    // Returns the value of a specific cell
-    public String getCell (int x, int y) {
-        return mirrorGrid[x][y];
+    void printGrid() {
+        GridHelper.printGrid(mirrorGrid);
     }
 }
 

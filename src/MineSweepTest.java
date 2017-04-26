@@ -56,7 +56,7 @@ public class MineSweepTest {
         testHiddenGrid.getHiddenCell(userXaxis, userYaxis);
         if (testHiddenGrid.getHiddenCell(userXaxis, userYaxis) == -1){
             System.out.println("Oh no! That was a bomb. Game over.");
-            testHiddenGrid.printGridToConsole();
+            testHiddenGrid.printGrid();
         }
 
 

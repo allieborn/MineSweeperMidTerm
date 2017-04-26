@@ -47,7 +47,7 @@ public class MineSweepTest {
     public static void testForEndofGame() {
 
         HiddenGrid testHiddenGrid;
-        testHiddenGrid = new HiddenGrid(10);
+        testHiddenGrid = new HiddenGrid(10);j
 //initialized these just to avoid error message
 //this is just a mock up - will be better once we see main
         int userXaxis = 0;

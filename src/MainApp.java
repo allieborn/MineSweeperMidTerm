@@ -32,7 +32,6 @@ public class MainApp {
             if (userMove.equals("f")) {
                 mirrorGrid.setCell(userX,userY, -2);
                 mirrorGrid.printGrid();
-                // FIXME: Add 'bomb conter'
             } else if (hiddenGrid.getCell(userX, userY) == -1) {
                 System.out.println("Oh no! That was a bomb. Game over.");
                 hiddenGrid.printGrid();

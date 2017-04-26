@@ -7,14 +7,14 @@
  * @version 1.0
  */
 class MirrorGrid {
-    private String [][] mirrorGrid;
+    private Integer [][] mirrorGrid;
 
     /**
      * Constructor initializes Mirror Array to height and width chosen by user
      * @param userGridRequest user entered rows and columns (will always be a square)
      */
     MirrorGrid(int userGridRequest) {
-        mirrorGrid = new String[userGridRequest][userGridRequest];
+        mirrorGrid = new Integer[userGridRequest][userGridRequest];
     }
 
     /**
@@ -22,7 +22,7 @@ class MirrorGrid {
      * 'clean slate' of the default value passed
      * @param defaultValue string value to add to each cell
      */
-    public void initializeGrid(String defaultValue) {
+    public void initializeGrid(Integer defaultValue) {
         for (int i = 0; i < mirrorGrid.length; i++) {         // 1: Loops through every 'row'
             for (int j = 0; j < mirrorGrid.length; j++) {     // 2: Loops through every 'column' in each row
                 setCell(i, j, defaultValue);                  // 3: sets the specific cell at i by j to the defaultValue given
@@ -37,7 +37,7 @@ class MirrorGrid {
      * @return [x][y] cell's value
      */
     // Returns the value of a specific cell
-    String getCell (int x, int y) {
+    Integer getCell (int x, int y) {
         return mirrorGrid[x][y];
     }
 
@@ -47,7 +47,7 @@ class MirrorGrid {
      * @param y the column to set
      * @param newCellValue the value the cell will be initialized with
      */
-    void setCell (int x, int y, String newCellValue) {
+    void setCell (int x, int y, Integer newCellValue) {
         mirrorGrid[x][y] = newCellValue;
     }
 

@@ -24,15 +24,15 @@ class HiddenGrid {
      * Randomly generates bombs in the grid for every game,
      * and increments the cells around it
      */
-    void initializeGrid() {
+    void initializeGrid() { // FIXME: Portion this out!
         int maxBombs = GridHelper.getMaxBombs(hiddenGrid.length * hiddenGrid.length); // A: How many bombs CAN this have?
         int bombsPlaced = 0;                                                                  // B: How many bombs DOES this have?
 
         Random bombRandGen = new Random();
-        int cycleCap = bombRandGen.nextInt(5) // A:  Sets cycleCap to a randomly generated number between 0 and 15,
-                + bombRandGen.nextInt(5)      //     which will change every "cycle". A cycle starts over and a
-                + bombRandGen.nextInt(5);     //     new bomb is placed when cycleCellCount matches CycleCap
-        int cycleCellCount = 0;                     // B:  cycleCap starts at zero and goes up
+        int cycleCap = bombRandGen.nextInt(5)               // A:  Sets cycleCap to a randomly generated number between 0 and 15,
+                + bombRandGen.nextInt(5)                    //     which will change every "cycle". A cycle starts over and a
+                + bombRandGen.nextInt(5);                   //     new bomb is placed when cycleCellCount matches CycleCap
+        int cycleCellCount = 0;                                   // B:  cycleCap starts at zero and goes up
 
         for (int i = 0; i < hiddenGrid.length; i++) {  // two birdies nested, checking each individual cell
             for (int j = 0; j < hiddenGrid[i].length; j++) {

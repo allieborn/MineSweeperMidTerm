@@ -26,6 +26,7 @@ public class MineSweepTest {
         MirrorGrid testMirrorGrid;
         testHiddenGrid = new HiddenGrid(10);
         testMirrorGrid = new MirrorGrid(10);
+        testMirrorGrid.initializeGrid(0);
 
         Scanner scan = new Scanner (System.in);
 
@@ -39,11 +40,8 @@ public class MineSweepTest {
         System.out.println("Enter a Y value now: ");
         userYtoFlag = scan.nextInt();
 
-        testMirrorGrid.setCell(userXtoFlag, userYtoFlag, "!");
-
+        testMirrorGrid.setCell(userXtoFlag, userYtoFlag, -2);
         testMirrorGrid.printGrid();
-
-
     }
 
     public static void testForEndofGame() {

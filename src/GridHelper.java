@@ -1,17 +1,11 @@
 /**
- * Class description
+ * Methods that operate one the various grids in a program
  *
  * @author Sarah Guarino
  * @author Allie Born
  * @version 1.0
  */
-public class GridHelper {
-
-    // THINGS THIS CLASS WILL DO
-    // (to be expanded upon)
-    // copy hiddenGrid value to MirrorGrid twin if user guesses that box
-    // allow someone to "flag" or "guess" a box
-    // initialize HiddenGrid
+class GridHelper {
 
     /**
      * Copies specific cell in Hidden Grid to Mirror Grid
@@ -21,7 +15,7 @@ public class GridHelper {
      * @param mirrorGrid your MirrorGrid object
      */
     static void copyHiddenCellToMirror(int x, int y, HiddenGrid hiddenGrid, MirrorGrid mirrorGrid) {
-        mirrorGrid.setCell(x, y, Integer.toString(hiddenGrid.getCell(x, y)));
+        mirrorGrid.setCell(x, y, hiddenGrid.getCell(x, y));
     }
 
     /**
@@ -38,12 +32,27 @@ public class GridHelper {
     }
 
     /**
+     * increments a cell appropriately, based on it's contents
+     * @param x row
+     * @param y column
+     * @param hiddenObject array that is being operated on
+     */
+    private static void oneUp(int x, int y, Integer[][] hiddenObject) {
+        try {
+            if (hiddenObject[x][y] == null) {         // A: If this box is not initialized
+                hiddenObject[x][y] = 1;
+            } else if (hiddenObject[x][y] >= 0) {     // B: If this box is already initialized, +1
+                hiddenObject[x][y] += 1;
+            }
+        } catch(IndexOutOfBoundsException doesntExist) {/* If index is out of bounds, do nothing & move on*/}
+    }
+
+    /**
      * uses the oneUp method on each box surrounding a new bomb
      * @param x row
      * @param y column
      * @param hiddenObject array being passed
      */
-
     static void oneUpAll(int x, int y, Integer[][] hiddenObject) {
         oneUp(x - 1, y - 1, hiddenObject);       // Bottom Left
         oneUp(x, y - 1, hiddenObject);             // Bottom Center
@@ -56,51 +65,24 @@ public class GridHelper {
     }
 
     /**
-     * increments a cell appropriately, based on it's contents
-     * @param x row
-     * @param y column
-     * @param hiddenObject array that is being operated on
-     */
-    private static void oneUp(int x, int y, Integer[][] hiddenObject) {
-        try {
-            // A: If this box is not initialized
-            //    initialize it first, then +1
-            if (hiddenObject[x][y] == null) {
-                hiddenObject[x][y] = 1;
-
-            // B: If this box is already initialized, +1
-            } else if (hiddenObject[x][y] >= 0) {
-                hiddenObject[x][y] += 1;
-            }
-        } catch(IndexOutOfBoundsException doesntExist) {
-            // do nothing
-        }
-
-    }
-
-    /**
      * Prints entire grid to the console
      * @param printGrid grid to be printed to the console
      */
-    static void printGrid(Object[][] printGrid) {
-        // PRINTS TOP ROW OF COLUMN LABELS
-        System.out.print("\t|");
+    static void printGrid(Object[][] printGrid) { // FIXME: portion this out
+        System.out.print("\t|");                      // 1: HORIZONTAL LABELS
         for (int s = 0; s < printGrid.length; s++) {
             System.out.print("y" + s + "\t|");
         }
-        System.out.println();
+        horizontalBorder(printGrid);
 
-        // creates first border
-        for (int s = 0; s <= printGrid.length; s++) {
-            System.out.print(" __\t");
-        }
-        System.out.println();
-
-        // Iterates through every row x
-        for (int i = 0; i < printGrid.length; i++) {
-            System.out.print("x" + i + "\t|");
-            for (int j = 0; j < printGrid[i].length; j++) {
-                if (printGrid[i][j].equals(-1)) {
+        for (int i = 0; i < printGrid.length; i++) {  // 2: PRINTING EACH ROW
+            System.out.print("x" + i + "\t|");               // A: Printing Vertical Label
+            for (int j = 0; j < printGrid[i].length; j++) {  // B: Printing Cell Contents
+                if (printGrid[i][j].equals(null)) {
+                    System.out.print("This was it!");
+                } else if (printGrid[i][j].equals(-2)) {
+                    System.out.print("!\t|");
+                }else if (printGrid[i][j].equals(-1)) {
                     System.out.print("*\t|");
                 } else if (printGrid[i][j].equals(0)) {
                     System.out.print("\t|");
@@ -108,11 +90,18 @@ public class GridHelper {
                     System.out.print(printGrid[i][j] + "\t|");
                 }
             }
-            System.out.println();
-            for (int s = 0; s <= printGrid.length; s++) {
-                System.out.print(" __\t");
-            }
-            System.out.println();
+            horizontalBorder(printGrid);
         }
+    }
+
+    private static void horizontalBorder(Object[][] printGrid) {
+        String border;
+
+        System.out.println();
+        // creates first border
+        for (int s = 0; s <= printGrid.length; s++) {
+            System.out.print(" __\t");
+        }
+        System.out.println();
     }
 }

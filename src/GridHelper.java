@@ -69,6 +69,7 @@ class GridHelper {
      * @param printGrid grid to be printed to the console
      */
     static void printGrid(Object[][] printGrid) { // FIXME: portion this out
+        System.out.println();
         System.out.print("\t|");                      // 1: HORIZONTAL LABELS
         for (int s = 0; s < printGrid.length; s++) {
             System.out.print("y" + s + "\t|");
@@ -88,13 +89,14 @@ class GridHelper {
                 } else if (printGrid[i][j].equals(-1)) {
                     System.out.print("*\t|");
                 } else if (printGrid[i][j].equals(0)) {
-                    System.out.print("X\t|");
+                    System.out.print("o\t|");
                 } else {
                     System.out.print(printGrid[i][j] + "\t|");
                 }
             }
             horizontalBorder(printGrid);
         }
+        System.out.println();
     }
 
     private static void horizontalBorder(Object[][] printGrid) {

@@ -11,6 +11,7 @@ import java.util.Random;
 class HiddenGrid {
 
     private Integer[][] hiddenGrid;
+    private int bombsPlaced;
 
     /**
      * constructor for HiddenGrid objects
@@ -18,6 +19,7 @@ class HiddenGrid {
      */
     HiddenGrid(int userGridRequest) {
         hiddenGrid = new Integer[userGridRequest][userGridRequest];
+        bombsPlaced = 0;
     }
 
     /**
@@ -26,7 +28,7 @@ class HiddenGrid {
      */
     void initializeGrid() { // FIXME: Portion this out!
         int maxBombs = GridHelper.getMaxBombs(hiddenGrid.length * hiddenGrid.length); // A: How many bombs CAN this have?
-        int bombsPlaced = 0;                                                                  // B: How many bombs DOES this have?
+        bombsPlaced = 0;                                                                  // B: How many bombs DOES this have?
 
         Random bombRandGen = new Random();
         int cycleCap = bombRandGen.nextInt(5)               // A:  Sets cycleCap to a randomly generated number between 0 and 15,
@@ -87,6 +89,10 @@ class HiddenGrid {
      */
     void printGrid() {
         GridHelper.printGrid(hiddenGrid);
+    }
+
+    int getSafeCells (int gridLength) {
+        return (gridLength * gridLength) - bombsPlaced;
     }
 }
 

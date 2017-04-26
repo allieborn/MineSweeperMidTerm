@@ -43,6 +43,7 @@ public class MainApp {
             }
             else if (hiddenGrid.getCell(userX, userY) == 0){
                 mirrorGrid.setCell(userX, userY, -3);
+                mirrorGrid.printGrid(); 
                 hiddenGrid.printGrid(); //DELETE ONCE FINAL
             }
 
@@ -51,8 +52,6 @@ public class MainApp {
                 hiddenGrid.printGrid();
                 gameOver = true;
             }
-
-
 
         } while (!gameOver);
     }

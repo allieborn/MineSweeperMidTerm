@@ -30,6 +30,7 @@ public class MainApp {
             safeCells = hiddenGrid.getSafeCells(gridSize);
             safeCellsGuessed = 0;
 
+            mirrorGrid.printGrid();
 
             do {
                 userX = Validator.getInt(scan, "Enter the x axis of your guess: ", 0, gridSize - 1);

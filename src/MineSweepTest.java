@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -58,6 +60,43 @@ public class MineSweepTest {
             System.out.println("Oh no! That was a bomb. Game over.");
             testHiddenGrid.printGrid();
         }
+
+
+
+    }
+
+    public static void allieTestRandomBombPlacer() {
+
+        Scanner scan = new Scanner(System.in);
+
+        int[][] hiddenGrid = new int[4][4];  //testing 2d array, 4x4, default value of '0' in each
+        //disregard - I set this just for my experiment....
+        System.out.println(Arrays.deepToString(hiddenGrid));
+
+        //set something to change the 'bound' depending on how big user chooses the grid
+        //maybe gridsize * 0.25?
+
+        System.out.println("How big do you want grid to be?");
+        int userSizeChoice = scan.nextInt();
+        int boundValue = (int) (userSizeChoice * 0.25); //forced to cast to int since this will auto return double
+
+        int x;
+        Random ranGen = new Random();
+        //   System.out.println(x);
+
+        for (int i = 0; i < hiddenGrid.length; i++) {
+            for(int j = 0; j < hiddenGrid[i].length; j++) {
+                x = ranGen.nextInt(boundValue);
+                if (x == 1){ //this could be changed, just depends...
+                    hiddenGrid [i][j] = -1;
+                }
+
+            }
+        }
+
+        System.out.println();
+
+        System.out.println(Arrays.deepToString(hiddenGrid));;
 
 
 

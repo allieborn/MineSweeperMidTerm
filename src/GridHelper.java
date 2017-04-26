@@ -25,11 +25,10 @@ public class GridHelper {
     }
 
     public static int getMaxBombs (int cellCount) {
-        int maxBombs = cellCount / 10;
+        int maxBombs = cellCount / 7;
         if (cellCount % 10 > 0) {
             maxBombs += 1;
         }
         return maxBombs;
     }
-
 }

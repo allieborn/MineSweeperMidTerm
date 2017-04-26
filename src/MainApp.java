@@ -30,29 +30,6 @@ public class MainApp {
             safeCells = hiddenGrid.getSafeCells(gridSize);
             safeCellsGuessed = 0;
 
-<<<<<<< HEAD
-        do {
-            userX = Validator.getInt(scan, "Enter the x axis of your guess: ", 0, gridSize -1);
-            userY = Validator.getInt(scan, "Enter the y axis of your guess: ", 0, gridSize -1);
-            String userMove = Validator.getFirstChar(scan, "Do you want to dig, or flag this spot?: ", "d", "f");
-
-            if (userMove.equals("f")) {
-                mirrorGrid.setCell(userX,userY, -2);
-                mirrorGrid.printGrid();
-            } else if (hiddenGrid.getCell(userX, userY) == -1) {
-                System.out.println("Oh no! That was a bomb. Game over.");
-                hiddenGrid.printGrid();
-                gameOver = true;
-            } else if (hiddenGrid.getCell(userX, userY) == 0){
-                mirrorGrid.setCell(userX, userY, -3);
-                mirrorGrid.printGrid();
-            } else if (hiddenGrid.getCell(userX, userY) > 0) {
-                GridHelper.copyHiddenCellToMirror(userX, userY, hiddenGrid, mirrorGrid);
-                mirrorGrid.printGrid();
-            }
-        } while (!gameOver);
-=======
-            mirrorGrid.printGrid();
 
             do {
                 userX = Validator.getInt(scan, "Enter the x axis of your guess: ", 0, gridSize - 1);
@@ -69,22 +46,12 @@ public class MainApp {
                 } else if (hiddenGrid.getCell(userX, userY) == 0) {
                     mirrorGrid.setCell(userX, userY, -3);
                     mirrorGrid.printGrid();
-                    ++safeCellsGuessed;
                 } else if (hiddenGrid.getCell(userX, userY) > 0) {
                     GridHelper.copyHiddenCellToMirror(userX, userY, hiddenGrid, mirrorGrid);
                     mirrorGrid.printGrid();
-                    ++safeCellsGuessed;
-                }
-
-                // Lets the user make least guess, and if they won, it prints this to the screen
-                if (safeCellsGuessed == safeCells) {
-                    System.out.println("You won the game!");
-                    gameOver = true;
                 }
             } while (!gameOver);
 
-            goAgain = Validator.getFirstChar(scan, "Would you play to play another game? (y/n): ", "y", "n");
         } while (goAgain.equals("y"));
-        }
->>>>>>> 806920f3c7936ff33412ad066868699a3a8b08b0
     }
+}

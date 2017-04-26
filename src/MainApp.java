@@ -25,34 +25,25 @@ public class MainApp {
         mirrorGrid.printGrid();
 
         do {
+            userX = Validator.getInt(scan, "Enter the x axis of your guess: ", 0, gridSize -1);
+            userY = Validator.getInt(scan, "Enter the y axis of your guess: ", 0, gridSize -1);
+            String userMove = Validator.getFirstChar(scan, "Do you want to dig, or flag this spot?: ", "d", "f");
 
-            System.out.println("Enter the x/y axis for a box that you'd like to guess. ");
-
-            System.out.println("Enter an X value now: ");
-            userX = scan.nextInt();
-
-            System.out.println("Enter a Y value now: ");
-            userY = scan.nextInt();
-
-
-            if (hiddenGrid.getCell(userX, userY) > 0) {
-                GridHelper.copyHiddenCellToMirror(userX, userY, hiddenGrid, mirrorGrid);
+            if (userMove.equals("f")) {
+                mirrorGrid.setCell(userX,userY, -2);
                 mirrorGrid.printGrid();
-                System.out.println("here's the hidden grid:"); //DELETE ONCE FINAL
-                hiddenGrid.printGrid(); //DELETE ONCE FINAL
-            }
-            else if (hiddenGrid.getCell(userX, userY) == 0){
-                mirrorGrid.setCell(userX, userY, -3);
-                mirrorGrid.printGrid(); 
-                hiddenGrid.printGrid(); //DELETE ONCE FINAL
-            }
-
-            if (hiddenGrid.getCell(userX, userY) == -1) {
+                // FIXME: Add 'bomb conter'
+            } else if (hiddenGrid.getCell(userX, userY) == -1) {
                 System.out.println("Oh no! That was a bomb. Game over.");
                 hiddenGrid.printGrid();
                 gameOver = true;
+            } else if (hiddenGrid.getCell(userX, userY) == 0){
+                mirrorGrid.setCell(userX, userY, -3);
+                mirrorGrid.printGrid();
+            } else if (hiddenGrid.getCell(userX, userY) > 0) {
+                GridHelper.copyHiddenCellToMirror(userX, userY, hiddenGrid, mirrorGrid);
+                mirrorGrid.printGrid();
             }
-
         } while (!gameOver);
     }
 }

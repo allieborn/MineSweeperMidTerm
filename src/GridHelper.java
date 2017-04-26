@@ -21,10 +21,15 @@ public class GridHelper {
      * @param mirrorGrid your MirrorGrid object
      */
     public static void copyHiddenCellToMirror(int x, int y, HiddenGrid hiddenGrid, MirrorGrid mirrorGrid) {
-        mirrorGrid.setMirrorCell(x, y, Integer.toString(hiddenGrid.getHiddenCell(x, y)));
+        mirrorGrid.setCell(x, y, Integer.toString(hiddenGrid.getHiddenCell(x, y)));
     }
 
-    public static int getMaxBombs (int cellCount) {
+    /**
+     * calculates how many bombs a game should have at max, to avoid steep levels.
+     * @param cellCount how many cells does the board have?
+     * @return returns the maximum number of bombs this game can have
+     */
+    static int getMaxBombs (int cellCount) {
         int maxBombs = cellCount / 7;
         if (cellCount % 10 > 0) {
             maxBombs += 1;

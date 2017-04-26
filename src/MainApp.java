@@ -12,6 +12,10 @@ public class MainApp {
 
         System.out.println("Welcome to Mine-Sweeper");
 
+        HiddenGrid hiddenGrid = new HiddenGrid(10); // FIXME: SARAH, delete before pushing
+        hiddenGrid.initializeHiddenGrid();
+        hiddenGrid.printGrid();
+
 //        gridSize = Validator.getInt(scan,
 //                "Enter the size of your grid to play on (2 through 10): ",
 //                2,
@@ -32,8 +36,6 @@ public class MainApp {
 
         MineSweepTest myTest = new MineSweepTest();
         MineSweepTest.testForUserFlag();
-
-
 
     }
 }

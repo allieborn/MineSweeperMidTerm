@@ -20,23 +20,22 @@ class HiddenGrid {
         hiddenGrid[x][y] = newValue;
     }
 
-    void initiateHiddenGrid() {
-        // calculates the max number of bombs this game CAN have
+    void initializeHiddenGrid() {
+        // calculates the max number of bombs this game CAN have, and how many it DOES have, respectively
         int maxBombs = GridHelper.getMaxBombs(hiddenGrid.length * hiddenGrid.length);
         int bombsPlaced = 0;
 
         // creates a Random object bombGen to generate numbers between 0 and 9
         Random bombRandGen = new Random();
-
+        // Randomly generates how many cells to pass before placing another bomb, 0-18.
+        int cycleCellMax = bombRandGen.nextInt(9) + bombRandGen.nextInt(9);
         // bomb will be placed when this number matches "cycleMax"
         int cycleCellCount = 0;
 
-        // Randomly generates how many cells to pass before placing another bomb
-        int cycleCellMax = bombRandGen.nextInt(9) + bombRandGen.nextInt(9);
-
+        // two birdies nested, checking each individual cell
         for (int i = 0; i < hiddenGrid.length; i++) {
             for (int j = 0; j < hiddenGrid[i].length; j++) {
-                // if maxbombs has not been reached, and this 'cycles' max cells is hit, place bomb
+                // if this Cycle's 'max' has been reached AND we haven't hit our 'maximum' bombs limit, place a bomb.
                 if ((cycleCellCount == cycleCellMax) && (bombsPlaced < maxBombs)) {
                     //sets the current cell to a bomb
                     setHiddenGrid(i, j, -1);
@@ -60,7 +59,10 @@ class HiddenGrid {
         System.out.println("*********Current Bombs: " + bombsPlaced);
     }
 
-    void printGridToConsole() {
+    /**
+     * Prints entire Mirror Grid to the console
+     */
+    public void printGrid() {
         // PRINTS TOP ROW OF COLUMN LABELS
         System.out.print("\t|");
         for (int s = 0; s < hiddenGrid.length; s++) {

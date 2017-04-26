@@ -37,9 +37,9 @@ public class MineSweepTest {
         System.out.println("Enter a Y value now: ");
         userYtoFlag = scan.nextInt();
 
-        testMirrorGrid.setMirrorCell(userXtoFlag, userYtoFlag, "!");
+        testMirrorGrid.setCell(userXtoFlag, userYtoFlag, "!");
 
-        testMirrorGrid.printGridToConsole();
+        testMirrorGrid.printGrid();
 
 
     }

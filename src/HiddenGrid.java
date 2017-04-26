@@ -12,15 +12,15 @@ class HiddenGrid {
         hiddenGrid = new int[userGridRequest][userGridRequest];
     }
 
-    int getHiddenCell(int y, int x) {
+    int getCell(int x, int y) {
         return hiddenGrid[x][y];
     }
 
-    private void setHiddenGrid(int x, int y, int newValue) {
+    private void setCell(int x, int y, int newValue) {
         hiddenGrid[x][y] = newValue;
     }
 
-    void initializeHiddenGrid() {
+    void initializeGrid() {
         // calculates the max number of bombs this game CAN have, and how many it DOES have, respectively
         int maxBombs = GridHelper.getMaxBombs(hiddenGrid.length * hiddenGrid.length);
         int bombsPlaced = 0;
@@ -38,10 +38,18 @@ class HiddenGrid {
                 // if this Cycle's 'max' has been reached AND we haven't hit our 'maximum' bombs limit, place a bomb.
                 if ((cycleCellCount == cycleCellMax) && (bombsPlaced < maxBombs)) {
                     //sets the current cell to a bomb
-                    setHiddenGrid(i, j, -1);
+                    setCell(i, j, -1);
 
                     // increments all cells around it
-                    oneUps(i, j);
+                    oneUp(i, j - 1); // N
+                    oneUp(i + 1, j - 1); // NE
+                    oneUp(i + 1, j  ); // E
+                    oneUp(i + 1, j - 1); // SE
+                    oneUp(i , j - 1); // S
+                    oneUp(i - 1, j + 1); // SW
+                    oneUp(i - 1, j); // W
+                    oneUp(i - 1, j + 1); // NW
+
 
                     // restart this cycle's counter
                     cycleCellCount = 0;
@@ -55,14 +63,13 @@ class HiddenGrid {
             }
         }
 
-        System.out.println("*********Max Bombs: " + maxBombs);
-        System.out.println("*********Current Bombs: " + bombsPlaced);
+        System.out.println("Bombs Placed: " + bombsPlaced);
     }
 
     /**
      * Prints entire Mirror Grid to the console
      */
-    public void printGrid() {
+    void printGrid() {
         // PRINTS TOP ROW OF COLUMN LABELS
         System.out.print("\t|");
         for (int s = 0; s < hiddenGrid.length; s++) {
@@ -90,8 +97,13 @@ class HiddenGrid {
         }
     }
 
-    private void oneUps(int x, int y) {
-
+    private void oneUp(int x, int y) {
+        try {
+            if(hiddenGrid[x][y] > -1) {
+                hiddenGrid[x][y] = hiddenGrid[x][y] + 1;
+            }
+        } catch(IndexOutOfBoundsException e) {
+        }
     }
 
     // THINGS THIS CLASS WILL DO

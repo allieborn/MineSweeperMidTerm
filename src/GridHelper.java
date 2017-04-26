@@ -21,7 +21,7 @@ public class GridHelper {
      * @param mirrorGrid your MirrorGrid object
      */
     public static void copyHiddenCellToMirror(int x, int y, HiddenGrid hiddenGrid, MirrorGrid mirrorGrid) {
-        mirrorGrid.setCell(x, y, Integer.toString(hiddenGrid.getHiddenCell(x, y)));
+        mirrorGrid.setCell(x, y, Integer.toString(hiddenGrid.getCell(x, y)));
     }
 
     /**

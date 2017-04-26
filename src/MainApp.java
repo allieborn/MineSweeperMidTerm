@@ -13,7 +13,7 @@ public class MainApp {
         System.out.println("Welcome to Mine-Sweeper");
 
         HiddenGrid hiddenGrid = new HiddenGrid(10); // FIXME: SARAH, delete before pushing
-        hiddenGrid.initializeHiddenGrid();
+        hiddenGrid.initializeGrid();
         hiddenGrid.printGrid();
 
 //        gridSize = Validator.getInt(scan,

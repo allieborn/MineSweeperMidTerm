@@ -79,13 +79,16 @@ class GridHelper {
             System.out.print("x" + i + "\t|");               // A: Printing Vertical Label
             for (int j = 0; j < printGrid[i].length; j++) {  // B: Printing Cell Contents
                 if (printGrid[i][j].equals(null)) {
+
                     System.out.print("This was it!");
+                } else if (printGrid[i][j].equals(-3)) {
+                    System.out.print("\t|");
                 } else if (printGrid[i][j].equals(-2)) {
                     System.out.print("!\t|");
-                }else if (printGrid[i][j].equals(-1)) {
+                } else if (printGrid[i][j].equals(-1)) {
                     System.out.print("*\t|");
                 } else if (printGrid[i][j].equals(0)) {
-                    System.out.print("\t|");
+                    System.out.print("X\t|");
                 } else {
                     System.out.print(printGrid[i][j] + "\t|");
                 }

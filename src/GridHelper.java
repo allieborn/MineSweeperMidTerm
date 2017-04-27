@@ -6,7 +6,6 @@
  * @version 1.0
  */
 class GridHelper {
-    private static int recursionLevel = 0;
 
     /**
      * Copies specific cell in Hidden Grid to Mirror Grid
@@ -69,29 +68,21 @@ class GridHelper {
      * Prints entire grid to the console
      * @param printGrid grid to be printed to the console
      */
-    static void printGrid(Object[][] printGrid) { // FIXME: portion this out
-        System.out.println();
-        System.out.print("\t|");                      // 1: HORIZONTAL LABELS
-        for (int s = 0; s < printGrid.length; s++) {
-            System.out.print("y" + s + "\t|");
-        }
-        horizontalBorder(printGrid);
-
+    static void printGrid(Object[][] printGrid) {
+        horizontalLabels(printGrid);  // 1: HORIZONTAL LABELS
         for (int i = 0; i < printGrid.length; i++) {  // 2: PRINTING EACH ROW
             System.out.print("x" + i + "\t|");               // A: Printing Vertical Label
             for (int j = 0; j < printGrid[i].length; j++) {  // B: Printing Cell Contents
-                if (printGrid[i][j].equals(null)) {
-                    System.out.print("This was it!");
-                } else if (printGrid[i][j].equals(-3)) {
-                    System.out.print("\t|");
+                if (printGrid[i][j].equals(-3)) {
+                    System.out.print("\t|");                   // Discovered blank space
                 } else if (printGrid[i][j].equals(-2)) {
-                    System.out.print("!\t|");
+                    System.out.print("!\t|");                  // a flagged position
                 } else if (printGrid[i][j].equals(-1)) {
-                    System.out.print("*\t|");
+                    System.out.print("*\t|");                  // a bomb
                 } else if (printGrid[i][j].equals(0)) {
-                    System.out.print("o\t|");
+                    System.out.print("o\t|");                  // and undiscovered blank space
                 } else {
-                    System.out.print(printGrid[i][j] + "\t|");
+                    System.out.print(printGrid[i][j] + "\t|"); // number representing how many bombs are touching this square
                 }
             }
             horizontalBorder(printGrid);
@@ -107,46 +98,41 @@ class GridHelper {
         }
         System.out.println();
     }
+    private static void horizontalLabels(Object[][] printGrid) {
+        System.out.println();
+        System.out.print("\t|");
+        for (int s = 0; s < printGrid.length; s++) {
+            System.out.print("y" + s + "\t|");
+        }
 
-    static void revealCells(int x, int y, int newValue, MirrorGrid mirrorGrid, HiddenGrid hiddenGrid) {
-        recursionLevel += 1;
-        System.out.println("Inception Totem OPEN: " + recursionLevel);
-        revealCell(x - 1, y - 1, newValue, mirrorGrid, hiddenGrid);
-        revealCell(x, y - 1, newValue, mirrorGrid, hiddenGrid);
-        revealCell(x + 1, y - 1, newValue, mirrorGrid, hiddenGrid);
-        revealCell(x + 1, y, newValue, mirrorGrid, hiddenGrid);
-        revealCell(x, y , newValue, mirrorGrid, hiddenGrid);
-        revealCell(x -1, y + 1, newValue, mirrorGrid, hiddenGrid);
-        revealCell(x, y + 1, newValue, mirrorGrid, hiddenGrid);
-        revealCell(x +1, y + 1, newValue, mirrorGrid, hiddenGrid);
-        recursionLevel -= 1;
-        System.out.println("Inception Totem CLOSE: " + recursionLevel);
+        horizontalBorder(printGrid);
     }
 
-    private static void revealCell(int x, int y, int newValue,
-                                   MirrorGrid mirrorGrid, HiddenGrid hiddenGrid) {
+    static void revealCells(int x, int y, int newValue, MirrorGrid mirrorGrid, HiddenGrid hiddenGrid) {
+        revealCell(x - 1, y , newValue, mirrorGrid, hiddenGrid);           // left
+        revealCell(x, y - 1, newValue, mirrorGrid, hiddenGrid);            // upper
+        revealCell(x, y + 1, newValue, mirrorGrid, hiddenGrid);            // bottom
+        revealCell(x - 1, y - 1, newValue, mirrorGrid, hiddenGrid);     // upper left
+        revealCell(x - 1, y + 1, newValue, mirrorGrid, hiddenGrid);     // bottom left
+        revealCell(x + 1, y - 1, newValue, mirrorGrid, hiddenGrid);      // upper right
+        revealCell(x + 1, y + 1, newValue, mirrorGrid, hiddenGrid);     // bottom right
+        revealCell(x + 1, y, newValue, mirrorGrid, hiddenGrid);           // right
+    }
+
+    private static void revealCell(int x, int y, int newValue, MirrorGrid mirrorGrid, HiddenGrid hiddenGrid) {
+        int cellRevealed = 0;
+
         try {
             if (hiddenGrid.getCell(x, y) >= 1) {
                 GridHelper.copyHiddenCellToMirror(x, y, hiddenGrid, mirrorGrid);
-//                System.out.println("x: " + x
-//                        + "\ny: " + y
-//                        + "\n\tCell Value: " + hiddenGrid.getCell(x, y));
-//                mirrorGrid.printGrid();
             } else if ((hiddenGrid.getCell(x, y) == 0) && (mirrorGrid.getCell(x, y) != -3)) {
                 mirrorGrid.setCell(x, y, newValue);
-//                System.out.println("x: " + x
-//                        + "\ny: " + y
-//                        + "\n\tCell Value: " + hiddenGrid.getCell(x, y));
-//                mirrorGrid.printGrid();
                 revealCells(x, y, newValue, mirrorGrid, hiddenGrid);
             } else if (hiddenGrid.getCell(x, y) == -1) {
                 System.out.println("ERROR, REPORT THIS TO SARAH");
             }
-        } catch(IndexOutOfBoundsException outOfBounds) {
-//            System.out.println("Out of bounds");
-//            System.out.println("x: " + x
-//                    + "\ny: " + y);
-//            mirrorGrid.printGrid();
-        }
+        } catch(IndexOutOfBoundsException outOfBounds) {}
+
+        System.out.println("cellRev: " + cellRevealed);
     }
 }

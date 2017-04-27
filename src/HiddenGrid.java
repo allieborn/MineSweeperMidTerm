@@ -61,6 +61,7 @@ class HiddenGrid {
                 }
             }
         }
+        System.out.println("Bombs placed: " + bombsPlaced);
     }
 
     /**
@@ -72,9 +73,7 @@ class HiddenGrid {
     int getCell(int x, int y) {
         try {
             return hiddenGrid[x][y];
-        } catch (IndexOutOfBoundsException hiddenIndex) {
-            System.out.println("Culprit: " + x + " " + y);
-        }
+        } catch (IndexOutOfBoundsException hiddenIndex) {}
         return hiddenGrid[x][y];
     }
 

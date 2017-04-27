@@ -51,21 +51,12 @@ public class MainApp {
                     GridHelper.revealCells(userX, userY, -3, mirrorGrid, hiddenGrid);
 
                     mirrorGrid.printGrid();
-                    ++safeCellsGuessed;
                 } else if (hiddenGrid.getCell(userX, userY) > 0) {
                     GridHelper.copyHiddenCellToMirror(userX, userY, hiddenGrid, mirrorGrid);
                     mirrorGrid.printGrid();
-                    ++safeCellsGuessed;
-                }
-
-                // Lets the user make least guess, and if they won, it prints this to the screen
-                if (safeCellsGuessed == safeCells) {
-                    System.out.println("You won the game!");
-                    gameOver = true;
                 }
             } while (!gameOver);
 
-            goAgain = Validator.getFirstChar(scan, "Would you play to play another game? (y/n): ", "y", "n");
         } while (goAgain.equals("y"));
     }
 }

@@ -35,7 +35,7 @@ public class MainApp {
             do {
                 userX = Validator.getInt(scan, "Enter the x axis of your guess: ", 0, gridSize - 1);
                 userY = Validator.getInt(scan, "Enter the y axis of your guess: ", 0, gridSize - 1);
-                userMove = Validator.getFirstChar(scan, "Do you want to dig, or flag this spot?: ", "d", "f");
+                userMove = Validator.getFirstChar(scan, "Do you want to dig, or flag this spot? (dig/flag): ", "d", "f");
 
                 if (userMove.equals("f")) {
                     mirrorGrid.setCell(userX, userY, -2);
@@ -46,6 +46,10 @@ public class MainApp {
                     gameOver = true;
                 } else if (hiddenGrid.getCell(userX, userY) == 0) {
                     mirrorGrid.setCell(userX, userY, -3);
+
+                    // FIXME grid helper revealing surrounding cells
+                    GridHelper.revealCells(userX, userY, -3, mirrorGrid, hiddenGrid);
+
                     mirrorGrid.printGrid();
                     ++safeCellsGuessed;
                 } else if (hiddenGrid.getCell(userX, userY) > 0) {

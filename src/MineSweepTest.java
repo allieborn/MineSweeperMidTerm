@@ -47,7 +47,7 @@ public class MineSweepTest {
     public static void testForEndofGame() {
 
         HiddenGrid testHiddenGrid;
-        testHiddenGrid = new HiddenGrid(10);j
+        testHiddenGrid = new HiddenGrid(10);
 //initialized these just to avoid error message
 //this is just a mock up - will be better once we see main
         int userXaxis = 0;
@@ -58,8 +58,6 @@ public class MineSweepTest {
             System.out.println("Oh no! That was a bomb. Game over.");
             testHiddenGrid.printGrid();
         }
-
-
 
     }
 

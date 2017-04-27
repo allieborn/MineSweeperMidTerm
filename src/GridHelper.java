@@ -6,6 +6,7 @@
  * @version 1.0
  */
 class GridHelper {
+    private static int recursionLevel = 0;
 
     /**
      * Copies specific cell in Hidden Grid to Mirror Grid
@@ -80,7 +81,6 @@ class GridHelper {
             System.out.print("x" + i + "\t|");               // A: Printing Vertical Label
             for (int j = 0; j < printGrid[i].length; j++) {  // B: Printing Cell Contents
                 if (printGrid[i][j].equals(null)) {
-
                     System.out.print("This was it!");
                 } else if (printGrid[i][j].equals(-3)) {
                     System.out.print("\t|");
@@ -100,13 +100,53 @@ class GridHelper {
     }
 
     private static void horizontalBorder(Object[][] printGrid) {
-        String border;
-
         System.out.println();
         // creates first border
         for (int s = 0; s <= printGrid.length; s++) {
             System.out.print(" __\t");
         }
         System.out.println();
+    }
+
+    static void revealCells(int x, int y, int newValue, MirrorGrid mirrorGrid, HiddenGrid hiddenGrid) {
+        recursionLevel += 1;
+        System.out.println("Inception Totem OPEN: " + recursionLevel);
+        revealCell(x - 1, y - 1, newValue, mirrorGrid, hiddenGrid);
+        revealCell(x, y - 1, newValue, mirrorGrid, hiddenGrid);
+        revealCell(x + 1, y - 1, newValue, mirrorGrid, hiddenGrid);
+        revealCell(x + 1, y, newValue, mirrorGrid, hiddenGrid);
+        revealCell(x, y , newValue, mirrorGrid, hiddenGrid);
+        revealCell(x -1, y + 1, newValue, mirrorGrid, hiddenGrid);
+        revealCell(x, y + 1, newValue, mirrorGrid, hiddenGrid);
+        revealCell(x +1, y + 1, newValue, mirrorGrid, hiddenGrid);
+        recursionLevel -= 1;
+        System.out.println("Inception Totem CLOSE: " + recursionLevel);
+    }
+
+    private static void revealCell(int x, int y, int newValue,
+                                   MirrorGrid mirrorGrid, HiddenGrid hiddenGrid) {
+        try {
+            if (hiddenGrid.getCell(x, y) >= 1) {
+                GridHelper.copyHiddenCellToMirror(x, y, hiddenGrid, mirrorGrid);
+//                System.out.println("x: " + x
+//                        + "\ny: " + y
+//                        + "\n\tCell Value: " + hiddenGrid.getCell(x, y));
+//                mirrorGrid.printGrid();
+            } else if ((hiddenGrid.getCell(x, y) == 0) && (mirrorGrid.getCell(x, y) != -3)) {
+                mirrorGrid.setCell(x, y, newValue);
+//                System.out.println("x: " + x
+//                        + "\ny: " + y
+//                        + "\n\tCell Value: " + hiddenGrid.getCell(x, y));
+//                mirrorGrid.printGrid();
+                revealCells(x, y, newValue, mirrorGrid, hiddenGrid);
+            } else if (hiddenGrid.getCell(x, y) == -1) {
+                System.out.println("ERROR, REPORT THIS TO SARAH");
+            }
+        } catch(IndexOutOfBoundsException outOfBounds) {
+//            System.out.println("Out of bounds");
+//            System.out.println("x: " + x
+//                    + "\ny: " + y);
+//            mirrorGrid.printGrid();
+        }
     }
 }

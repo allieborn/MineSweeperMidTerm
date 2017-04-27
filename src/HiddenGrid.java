@@ -70,6 +70,11 @@ class HiddenGrid {
      * @return value held in the cell x by y
      */
     int getCell(int x, int y) {
+        try {
+            return hiddenGrid[x][y];
+        } catch (IndexOutOfBoundsException hiddenIndex) {
+            System.out.println("Culprit: " + x + " " + y);
+        }
         return hiddenGrid[x][y];
     }
 
@@ -79,7 +84,7 @@ class HiddenGrid {
      * @param y column
      * @param newValue value to set cell x by y to
      */
-    void setCell(int x, int y, int newValue) {
+    private void setCell(int x, int y, int newValue) {
         hiddenGrid[x][y] = newValue;
     }
 

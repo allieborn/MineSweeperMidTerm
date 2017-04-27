@@ -24,7 +24,7 @@ public class MainApp {
             HiddenGrid hiddenGrid = new HiddenGrid(gridSize);
             MirrorGrid mirrorGrid = new MirrorGrid(gridSize);
             hiddenGrid.initializeGrid();
-            mirrorGrid.initializeGrid(0);
+            mirrorGrid.initializeGrid();
 
             // prints the user-visible grid
             mirrorGrid.printGrid();

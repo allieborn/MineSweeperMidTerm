@@ -26,42 +26,64 @@ class HiddenGrid {
      * Randomly generates bombs in the grid for every game,
      * and increments the cells around it
      */
-    void initializeGrid() { // FIXME: Portion this out!
+    void initializeGrid() {
+        // COUNT DOWN TO PLACING BOMBS
         int maxBombs = GridHelper.getMaxBombs(hiddenGrid.length * hiddenGrid.length); // A: How many bombs CAN this have?
         bombsPlaced = 0;                                                                  // B: How many bombs DOES this have?
+        int cycleCap = randomCycleCap();                      // C:  Sets cycleCap to a randomly generated number between 0 and 15,
+        int cycleCellCount = 0;                                  // D:  cycleCap starts at zero and goes up
 
-        Random bombRandGen = new Random();
-        int cycleCap = bombRandGen.nextInt(5)               // A:  Sets cycleCap to a randomly generated number between 0 and 15,
-                + bombRandGen.nextInt(5)                    //     which will change every "cycle". A cycle starts over and a
-                + bombRandGen.nextInt(5);                   //     new bomb is placed when cycleCellCount matches CycleCap
-        int cycleCellCount = 0;                                   // B:  cycleCap starts at zero and goes up
-
-        for (int i = 0; i < hiddenGrid.length; i++) {  // two birdies nested, checking each individual cell
+        for (int i = 0; i < hiddenGrid.length; i++) {
             for (int j = 0; j < hiddenGrid[i].length; j++) {
+
+                // 1: if this value is null, set it to zero and operate from there
                 if (hiddenGrid[i][j] == null) {
                     setCell(i, j, 0);
                 }
 
-                // A: if it's time to place a bomb,
-                //    and we HAVEN'T hit 'maximum bombs'
-                if ((cycleCellCount == cycleCap) && (bombsPlaced < maxBombs)) {
-                    setCell(i, j, -1);                    // 1: Turns this cell into a bomb
-                    GridHelper.oneUpAll(i, j, hiddenGrid);        // 2: Increments all cells surrounding the new bomb
-                    ++bombsPlaced;                                // 3: Increments the current bomb total
-                    cycleCellCount = 0;                           // 4: Restarts the 'cycle counter'
-                    cycleCap = bombRandGen.nextInt(5)       // 5. Sets the next cycle's "cap" to an integer between 0 and 15
-                            + bombRandGen.nextInt(5)
-                            + bombRandGen.nextInt(5);
+                // 2.1: if it's time to place a bomb, and we HAVEN'T hit 'maximum bombs'
+                if((cycleCellCount == cycleCap) && (bombsPlaced < maxBombs)){
+                    placeBomb(i, j, -1);      // a: turns this cell into a bomb, increments cells around it
+                    cycleCellCount = 0;               // b: Restarts the 'cycle counter'
+                    cycleCap = randomCycleCap();      // c: Gives us a new number to 'count down' to, to place the next bomb
 
-                // B: if it's time to place a bomb,
-                //    and we HAVE hit maximum bombs,
-                //    and the value isn't already filled with something else
-                }  else {
-                    ++cycleCellCount; // 0. Moves to the next cell in the 'cycle' having done nothing
+                // 2.2: if it's time to place a bomb, and we HAVE hit maximum bombs,
+                // and the value isn't already filled with something else
+                } else{
+                    ++cycleCellCount; // a. Moves to the next cell in the 'cycle' having done nothing
                 }
             }
         }
         System.out.println("Bombs placed: " + bombsPlaced);
+    }
+
+    /** generates a random number
+     * between 0 and 15 for a count
+     * down to the next bomb
+     * @return the new 'cycle cap'
+     */
+    private static int randomCycleCap() {
+        int newValue = 0;
+        int iterations = 3;
+        Random bombRandGen = new Random();
+
+        for (int i = 0; i <= iterations; i++) {
+            newValue += bombRandGen.nextInt(5);
+        }
+
+        return newValue;
+    }
+
+    /**
+     * places a bomb and makes the appropriate changes
+     * @param x row
+     * @param y column
+     * @param newValue new value this cell will be
+     */
+    private void placeBomb(int x, int y, int newValue) {
+        setCell(x, y, newValue);               // a: Turns this cell into a bomb
+        ++bombsPlaced;                         // b: increments bombs placed
+        GridHelper.oneUpAll(x, y, hiddenGrid); // b: Increments all cells surrounding the new bomb
     }
 
     /**
@@ -93,10 +115,6 @@ class HiddenGrid {
      */
     void printGrid() {
         GridHelper.printGrid(hiddenGrid);
-    }
-
-    int getSafeCells (int gridLength) {
-        return (gridLength * gridLength) - bombsPlaced;
     }
 }
 

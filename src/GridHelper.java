@@ -46,7 +46,6 @@ class GridHelper {
             }
         } catch(IndexOutOfBoundsException doesntExist) {/* If index is out of bounds, do nothing & move on*/}
     }
-
     /**
      * uses the oneUp method on each box surrounding a new bomb
      * @param x row
@@ -69,7 +68,7 @@ class GridHelper {
      * @param printGrid grid to be printed to the console
      */
     static void printGrid(Object[][] printGrid) {
-        horizontalLabels(printGrid);  // 1: HORIZONTAL LABELS
+        horizontalLabels(printGrid);                  // 1: HORIZONTAL LABELS
         for (int i = 0; i < printGrid.length; i++) {  // 2: PRINTING EACH ROW
             System.out.print("x" + i + "\t|");               // A: Printing Vertical Label
             for (int j = 0; j < printGrid[i].length; j++) {  // B: Printing Cell Contents
@@ -87,9 +86,12 @@ class GridHelper {
             }
             horizontalBorder(printGrid);
         }
-        System.out.println();
+        System.out.println();                           // 3. SPACING AT BOTTOM
     }
 
+    /**
+     * a horizontal border of underscores
+     */
     private static void horizontalBorder(Object[][] printGrid) {
         System.out.println();
         // creates first border
@@ -98,6 +100,11 @@ class GridHelper {
         }
         System.out.println();
     }
+
+    /**
+     * horizontal labels for the grid... y1, y2, y3 etc.
+     * @param printGrid the object we are printing for
+     */
     private static void horizontalLabels(Object[][] printGrid) {
         System.out.println();
         System.out.print("\t|");
@@ -108,6 +115,7 @@ class GridHelper {
         horizontalBorder(printGrid);
     }
 
+    // WIP
     static void revealCells(int x, int y, int newValue, MirrorGrid mirrorGrid, HiddenGrid hiddenGrid) {
         revealCell(x - 1, y , newValue, mirrorGrid, hiddenGrid);           // left
         revealCell(x, y - 1, newValue, mirrorGrid, hiddenGrid);            // upper
@@ -119,6 +127,7 @@ class GridHelper {
         revealCell(x + 1, y, newValue, mirrorGrid, hiddenGrid);           // right
     }
 
+    //WIP
     private static void revealCell(int x, int y, int newValue, MirrorGrid mirrorGrid, HiddenGrid hiddenGrid) {
         int cellRevealed = 0;
 
@@ -132,7 +141,5 @@ class GridHelper {
                 System.out.println("ERROR, REPORT THIS TO SARAH");
             }
         } catch(IndexOutOfBoundsException outOfBounds) {}
-
-        System.out.println("cellRev: " + cellRevealed);
     }
 }

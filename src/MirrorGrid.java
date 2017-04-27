@@ -20,12 +20,11 @@ class MirrorGrid {
     /**
      * initializes the mirrorGrid object with a
      * 'clean slate' of the default value passed
-     * @param defaultValue string value to add to each cell
      */
-    void initializeGrid(Integer defaultValue) {
+    void initializeGrid() {
         for (int i = 0; i < mirrorGrid.length; i++) {         // 1: Loops through every 'row'
             for (int j = 0; j < mirrorGrid.length; j++) {     // 2: Loops through every 'column' in each row
-                setCell(i, j, defaultValue);                  // 3: sets the specific cell at i by j to the defaultValue given
+                setCell(i, j, 0);                  // 3: sets the specific cell at i by j to the defaultValue given
             }
         }
     }

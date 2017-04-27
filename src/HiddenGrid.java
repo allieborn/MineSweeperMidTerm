@@ -87,6 +87,13 @@ class HiddenGrid {
     }
 
     /**
+     * returns the number of bombs placed on this map
+     */
+    public int getBombsPlaced () {
+        return bombsPlaced;
+    }
+
+    /**
      * returns the held value of a specific cell
      * @param x row
      * @param y column

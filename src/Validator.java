@@ -40,7 +40,7 @@ class Validator {
      * @param max highest number accepted
      * @return returns valid integer between min and max
      */
-    public static int getInt(Scanner sc, String prompt,
+    static int getInt(Scanner sc, String prompt,
                              int min, int max) {
         int i = 0;
         boolean isValid = false;
@@ -105,7 +105,7 @@ class Validator {
         return d;
     }
 
-    public static double getDouble(Scanner sc, String prompt,
+    static double getDouble(Scanner sc, String prompt,
                                    double min, double max)
     {
         double d = 0;
@@ -139,14 +139,16 @@ class Validator {
         boolean isValid = false;
 
         while (!isValid) {
-            System.out.print(prompt);
-            // if the first character of the user's next input is equal to char1
-            character = Character.toString(sc.nextLine().charAt(0)).toLowerCase();
-            if (character.equals(char1) || character.equals(char2)) {
-                isValid = true;
-            } else {
-                System.out.println("Error! Invalid response. Try again.");
-            }
+            try {
+                System.out.print(prompt);
+                // if the first character of the user's next input is equal to char1
+                character = Character.toString(sc.nextLine().charAt(0)).toLowerCase();
+                if (character.equals(char1) || character.equals(char2)) {
+                    isValid = true;
+                } else {
+                    System.out.println("Error! Invalid response. Try again.");
+                }
+            } catch (StringIndexOutOfBoundsException stringIOOB) {}
         }
         return character;
     }
@@ -165,14 +167,16 @@ class Validator {
         boolean isValid = false;
 
         while (!isValid) {
-            System.out.print(prompt);
-            // if the first character of the user's next input is equal to char1
-            character = Character.toString(sc.nextLine().charAt(0)).toLowerCase();
-            if (character.equals(char1) || character.equals(char2) || character.equals(char3)) {
-                isValid = true;
-            } else {
-                System.out.println("Error! Invalid response. Try again.");
-            }
+            try {
+                System.out.print(prompt);
+                // if the first character of the user's next input is equal to char1
+                character = Character.toString(sc.nextLine().charAt(0)).toLowerCase();
+                if (character.equals(char1) || character.equals(char2) || character.equals(char3)) {
+                    isValid = true;
+                } else {
+                    System.out.println("Error! Invalid response. Try again.");
+                }
+            } catch (StringIndexOutOfBoundsException stringIOOB) {}
         }
         return character;
     }

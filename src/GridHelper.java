@@ -79,7 +79,7 @@ class GridHelper {
                 } else if (printGrid[i][j].equals(-1)) {
                     System.out.print("*\t|");                  // a bomb
                 } else if (printGrid[i][j].equals(0)) {
-                    System.out.print("o\t|");                  // and undiscovered blank space
+                    System.out.print("o\t|");                  // an undiscovered space
                 } else {
                     System.out.print(printGrid[i][j] + "\t|"); // number representing how many bombs are touching this square
                 }
@@ -129,8 +129,6 @@ class GridHelper {
 
     //WIP
     private static void revealCell(int x, int y, int newValue, MirrorGrid mirrorGrid, HiddenGrid hiddenGrid) {
-        int cellRevealed = 0;
-
         try {
             if (hiddenGrid.getCell(x, y) >= 1) {
                 GridHelper.copyHiddenCellToMirror(x, y, hiddenGrid, mirrorGrid);

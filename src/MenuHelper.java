@@ -43,8 +43,8 @@ class MenuHelper {
      * Operates off of a user's move this turn
      */
     static boolean userMove(Scanner scan, MirrorGrid mirrorGrid, HiddenGrid hiddenGrid, int gridSize){
-        int userX = Validator.getInt(scan, "Enter the x axis of your guess: ", 0, gridSize - 1);
-        int userY = Validator.getInt(scan, "Enter the y axis of your guess: ", 0, gridSize - 1);
+        int userX = (Validator.getInt(scan, "Enter the x axis of your guess: ", 1, gridSize) - 1);
+        int userY = (Validator.getInt(scan, "Enter the y axis of your guess: ", 1, gridSize) - 1);
         String userMove = Validator.getFirstChar(scan, "Do you want to dig, or flag this spot? (dig/flag): ", "d", "f");
         boolean gameOver = false;
 

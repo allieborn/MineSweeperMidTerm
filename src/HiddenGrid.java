@@ -27,7 +27,7 @@ class HiddenGrid {
      * and increments the cells around it
      */
     void initializeGrid() {
-        // COUNT DOWN TO PLACING BOMBS
+        // COUNT DOWN TO PLACING BOMBS  // FIXME: crap this out into methods
         int maxBombs = GridHelper.getMaxBombs(hiddenGrid.length * hiddenGrid.length); // A: How many bombs CAN this have?
         bombsPlaced = 0;                                                                  // B: How many bombs DOES this have?
         int cycleCap = randomCycleCap();                      // C:  Sets cycleCap to a randomly generated number between 0 and 15,
@@ -68,7 +68,7 @@ class HiddenGrid {
         Random bombRandGen = new Random();
 
         for (int i = 0; i <= iterations; i++) {
-            newValue += bombRandGen.nextInt(5);
+            newValue += bombRandGen.nextInt(4);
         }
 
         return newValue;
@@ -89,7 +89,7 @@ class HiddenGrid {
     /**
      * returns the number of bombs placed on this map
      */
-    public int getBombsPlaced () {
+    int getBombsPlaced () {
         return bombsPlaced;
     }
 

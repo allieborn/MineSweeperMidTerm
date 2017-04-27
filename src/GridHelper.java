@@ -24,7 +24,7 @@ class GridHelper {
      * @return returns the maximum number of bombs this game can have
      */
     static int getMaxBombs (int cellCount) {
-        int maxBombs = cellCount / 7;
+        int maxBombs = cellCount / 5;
         if (cellCount % 10 > 0) {
             maxBombs += 1;
         }
@@ -39,13 +39,14 @@ class GridHelper {
      */
     private static void oneUp(int x, int y, Integer[][] hiddenObject) {
         try {
-            if (hiddenObject[x][y] == null) {         // A: If this box is not initialized
+            if ((hiddenObject[x][y] == null) || (hiddenObject[x][y] == -3)) {         // A: If this box is not initialized
                 hiddenObject[x][y] = 1;
             } else if (hiddenObject[x][y] >= 0) {     // B: If this box is already initialized, +1
                 hiddenObject[x][y] += 1;
             }
         } catch(IndexOutOfBoundsException doesntExist) {/* If index is out of bounds, do nothing & move on*/}
     }
+
     /**
      * uses the oneUp method on each box surrounding a new bomb
      * @param x row
@@ -70,18 +71,18 @@ class GridHelper {
     static void printGrid(Object[][] printGrid) {
         horizontalLabels(printGrid);                  // 1: HORIZONTAL LABELS
         for (int i = 0; i < printGrid.length; i++) {  // 2: PRINTING EACH ROW
-            System.out.print("x" + i + "\t|");               // A: Printing Vertical Label
+            System.out.print("x" + (i + 1) + "\t|");               // A: Printing Vertical Label for each row
             for (int j = 0; j < printGrid[i].length; j++) {  // B: Printing Cell Contents
                 if (printGrid[i][j].equals(-3)) {
-                    System.out.print("\t|");                   // Discovered blank space
+                    System.out.print("\t|");       // a. Discovered blank space
                 } else if (printGrid[i][j].equals(-2)) {
-                    System.out.print("!\t|");                  // a flagged position
+                    System.out.print("\uD83D\uDEA9\t|");        // b. A flagged position
                 } else if (printGrid[i][j].equals(-1)) {
-                    System.out.print("*\t|");                  // a bomb
+                    System.out.print("\uD83D\uDCA9\t|");        // c. A bomb
                 } else if (printGrid[i][j].equals(0)) {
-                    System.out.print("o\t|");                  // an undiscovered space
+                    System.out.print("\uD83C\uDF40\t|");        // d. An undiscovered space
                 } else {
-                    System.out.print(printGrid[i][j] + "\t|"); // number representing how many bombs are touching this square
+                    System.out.print(printGrid[i][j] + "\t|");               // e. A square touching a bomb
                 }
             }
             horizontalBorder(printGrid);
@@ -109,7 +110,7 @@ class GridHelper {
         System.out.println();
         System.out.print("\t|");
         for (int s = 0; s < printGrid.length; s++) {
-            System.out.print("y" + s + "\t|");
+            System.out.print("y" + (s + 1) + "\t|");
         }
 
         horizontalBorder(printGrid);

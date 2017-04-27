@@ -8,12 +8,12 @@ public class MainApp {
         boolean gameOver;
         int gridSize;
 
-        System.out.println("Welcome to Mine-Sweeper!\n");
+        System.out.println("Welcome to the Grand Circus Dog Park!\n");
 
         do {  // NEW GAME
             gridSize = Validator.getInt(scan,
-                    "Please enter the size you'd like to play (2 through 10): ",
-                    2,
+                    "Please enter the size you'd like to play (5 through 10): ",
+                    5,
                     10);                                       // 1: Get grid difficulty from the user
             HiddenGrid hiddenGrid = new HiddenGrid(gridSize);      // 2: Create our grid objects
             MirrorGrid mirrorGrid = new MirrorGrid(gridSize);

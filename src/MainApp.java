@@ -1,5 +1,13 @@
 import java.util.Scanner;
 
+
+/**
+ * Handles movement through new games and new turns
+ *
+ * @author Allie Born
+ * @author Sarah Guarino
+ * @version 1.0
+ */
 public class MainApp {
 
     public static void main(String[] args) {

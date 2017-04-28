@@ -27,30 +27,23 @@ class HiddenGrid {
      * and increments the cells around it
      */
     void initializeGrid() {
-        // COUNT DOWN TO PLACING BOMBS  // FIXME: crap this out into methods
-        int maxBombs = GridHelper.getMaxBombs(hiddenGrid.length * hiddenGrid.length); // A: How many bombs CAN this have?
-        bombsPlaced = 0;                                                                  // B: How many bombs DOES this have?
-        int cycleCap = randomCycleCap();                      // C:  Sets cycleCap to a randomly generated number between 0 and 15,
-        int cycleCellCount = 0;                                  // D:  cycleCap starts at zero and goes up
+        int maxBombs = GridHelper.getMaxBombs((int)Math.pow(hiddenGrid.length, 2.0)); // A: How many bombs CAN this have?
+        bombsPlaced = 0;                                                              // B: How many bombs DOES this have?
+        int cycleCap = randomCycleCap();                                              // C:  Sets cycleCap to a randomly generated number between 0 and 15,
+        int cycleCellCount = 0;                                                       // D:  cycleCap starts at zero and goes up
 
         for (int i = 0; i < hiddenGrid.length; i++) {
             for (int j = 0; j < hiddenGrid[i].length; j++) {
 
-                // 1: if this value is null, set it to zero and operate from there
                 if (hiddenGrid[i][j] == null) {
-                    setCell(i, j, 0);
+                    setCell(i, j, 0);     // a: initializes the null value to 0
                 }
-
-                // 2.1: if it's time to place a bomb, and we HAVEN'T hit 'maximum bombs'
                 if((cycleCellCount == cycleCap) && (bombsPlaced < maxBombs)){
-                    placeBomb(i, j, -1);      // a: turns this cell into a bomb, increments cells around it
-                    cycleCellCount = 0;               // b: Restarts the 'cycle counter'
-                    cycleCap = randomCycleCap();      // c: Gives us a new number to 'count down' to, to place the next bomb
-
-                // 2.2: if it's time to place a bomb, and we HAVE hit maximum bombs,
-                // and the value isn't already filled with something else
+                    placeBomb(i, j, -1);  // a: turns this cell into a bomb, increments cells around it
+                    cycleCellCount = 0;           // b: Restarts the 'cycle counter'
+                    cycleCap = randomCycleCap();  // c: Gives us a new number to 'count down' to, to place the next bomb
                 } else{
-                    ++cycleCellCount; // a. Moves to the next cell in the 'cycle' having done nothing
+                    ++cycleCellCount;             // a. Moves to the next cell in the 'cycle' having done nothing
                 }
             }
         }
